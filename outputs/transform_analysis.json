@@ -1,0 +1,36 @@
+{
+  "criterion": "minimize mean absolute skewness of the pooled artist year totals across the two axes, restricted to smooth magnitude preserving transforms",
+  "candidates": [
+    "identity",
+    "sqrt",
+    "log1p",
+    "rank"
+  ],
+  "skewness_per_axis": {
+    "identity": {
+      "streams": 2.0177,
+      "placements": 1.3051
+    },
+    "sqrt": {
+      "streams": 1.0756,
+      "placements": 0.6355
+    },
+    "log1p": {
+      "streams": -0.2177,
+      "placements": -0.1175
+    },
+    "rank": {
+      "streams": 0.0,
+      "placements": 0.0
+    }
+  },
+  "mean_abs_skewness": {
+    "identity": 1.6614,
+    "sqrt": 0.8555,
+    "log1p": 0.1676,
+    "rank": 0.0
+  },
+  "chosen": "log1p",
+  "chosen_mean_abs_skewness": 0.1676,
+  "rank_reference_note": "the rank transform reaches near zero skewness by construction but is rejected because it centers the median and discards magnitude"
+}

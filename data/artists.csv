@@ -1,0 +1,301 @@
+artist_id,name,genre,home_region,debut,archetype,career_weeks,highlight
+A01,Nova Reyes,Pop,North America,2021-03-01,breakout,279,True
+A02,The Meridian,Rock,Europe,2018-09-03,steady_star,409,True
+A03,Kaito Sol,Electronic,Asia,2020-01-06,slow_burn,339,True
+A04,Luma Vale,R&B,North America,2022-06-06,late_bloomer,213,True
+A05,Rio Bravo,Latin,Latin America,2019-05-06,breakout,374,True
+A06,Echo Park Twins,Indie,North America,2020-10-05,one_hit,300,True
+A07,Selene Frost,Pop,Europe,2019-02-04,declining,387,True
+A08,Basslake,Electronic,Europe,2021-08-02,slow_burn,257,True
+A09,Marla Quinn,Country,North America,2020-04-06,steady_star,326,True
+A10,Zephyr Kane,Hip-Hop,North America,2022-01-03,breakout,235,True
+A11,Amara Diop,Afrobeats,Africa,2021-11-01,late_bloomer,244,True
+A12,Glass Harbor,Indie,Oceania,2018-04-02,declining,431,True
+P0001,Pool Artist 0001,Rock,Latin America,2023-08-01,slow_burn,152,False
+P0002,Pool Artist 0002,Rock,Asia,2021-08-01,declining,257,False
+P0003,Pool Artist 0003,Metal,Europe,2018-02-01,steady_star,439,False
+P0004,Pool Artist 0004,Afrobeats,Africa,2019-06-01,late_bloomer,370,False
+P0005,Pool Artist 0005,Latin,Asia,2019-02-01,breakout,387,False
+P0006,Pool Artist 0006,Country,Oceania,2023-06-01,breakout,161,False
+P0007,Pool Artist 0007,Electronic,Oceania,2016-10-01,slow_burn,509,False
+P0008,Pool Artist 0008,Pop,Oceania,2023-01-01,declining,183,False
+P0009,Pool Artist 0009,Country,Latin America,2024-08-01,one_hit,100,False
+P0010,Pool Artist 0010,Country,North America,2022-12-01,slow_burn,187,False
+P0011,Pool Artist 0011,Indie,Europe,2018-02-01,late_bloomer,439,False
+P0012,Pool Artist 0012,Pop,Africa,2023-12-01,late_bloomer,135,False
+P0013,Pool Artist 0013,Pop,Asia,2020-01-01,breakout,339,False
+P0014,Pool Artist 0014,Jazz,Africa,2023-02-01,one_hit,178,False
+P0015,Pool Artist 0015,Jazz,Middle East,2023-06-01,slow_burn,161,False
+P0016,Pool Artist 0016,Afrobeats,Latin America,2022-05-01,breakout,218,False
+P0017,Pool Artist 0017,Jazz,Asia,2023-02-01,late_bloomer,178,False
+P0018,Pool Artist 0018,Hip-Hop,North America,2016-04-01,late_bloomer,535,False
+P0019,Pool Artist 0019,R&B,Asia,2018-10-01,slow_burn,405,False
+P0020,Pool Artist 0020,Hip-Hop,Europe,2018-08-01,one_hit,413,False
+P0021,Pool Artist 0021,Pop,Europe,2021-10-01,steady_star,248,False
+P0022,Pool Artist 0022,Jazz,Europe,2022-12-01,breakout,187,False
+P0023,Pool Artist 0023,Hip-Hop,Africa,2022-12-01,slow_burn,187,False
+P0024,Pool Artist 0024,Pop,Middle East,2015-10-01,slow_burn,561,False
+P0025,Pool Artist 0025,Rock,Middle East,2017-01-01,slow_burn,496,False
+P0026,Pool Artist 0026,Hip-Hop,North America,2020-04-01,declining,326,False
+P0027,Pool Artist 0027,Electronic,Africa,2019-02-01,late_bloomer,387,False
+P0028,Pool Artist 0028,Country,Africa,2016-05-01,declining,531,False
+P0029,Pool Artist 0029,Afrobeats,Middle East,2021-09-01,one_hit,252,False
+P0030,Pool Artist 0030,Jazz,Oceania,2016-03-01,steady_star,539,False
+P0031,Pool Artist 0031,Hip-Hop,Europe,2021-08-01,late_bloomer,257,False
+P0032,Pool Artist 0032,Indie,Oceania,2018-02-01,late_bloomer,439,False
+P0033,Pool Artist 0033,Country,North America,2017-12-01,late_bloomer,448,False
+P0034,Pool Artist 0034,Afrobeats,Africa,2024-02-01,late_bloomer,126,False
+P0035,Pool Artist 0035,Afrobeats,North America,2022-12-01,slow_burn,187,False
+P0036,Pool Artist 0036,Metal,Middle East,2021-03-01,late_bloomer,279,False
+P0037,Pool Artist 0037,Folk,North America,2021-11-01,breakout,244,False
+P0038,Pool Artist 0038,Jazz,Asia,2021-01-01,steady_star,287,False
+P0039,Pool Artist 0039,Hip-Hop,Latin America,2021-12-01,slow_burn,239,False
+P0040,Pool Artist 0040,Latin,Africa,2022-12-01,steady_star,187,False
+P0041,Pool Artist 0041,Afrobeats,Asia,2018-05-01,late_bloomer,426,False
+P0042,Pool Artist 0042,Afrobeats,Europe,2024-04-01,breakout,118,False
+P0043,Pool Artist 0043,Afrobeats,Africa,2015-09-01,breakout,565,False
+P0044,Pool Artist 0044,Afrobeats,Europe,2017-02-01,late_bloomer,491,False
+P0045,Pool Artist 0045,Latin,Latin America,2017-12-01,slow_burn,448,False
+P0046,Pool Artist 0046,Hip-Hop,Africa,2019-01-01,breakout,391,False
+P0047,Pool Artist 0047,Country,Africa,2022-11-01,late_bloomer,191,False
+P0048,Pool Artist 0048,Electronic,Europe,2022-10-01,steady_star,196,False
+P0049,Pool Artist 0049,Folk,Oceania,2023-01-01,breakout,183,False
+P0050,Pool Artist 0050,Metal,Latin America,2020-12-01,slow_burn,291,False
+P0051,Pool Artist 0051,R&B,North America,2017-02-01,one_hit,491,False
+P0052,Pool Artist 0052,Hip-Hop,North America,2019-04-01,breakout,379,False
+P0053,Pool Artist 0053,Jazz,Africa,2018-06-01,slow_burn,422,False
+P0054,Pool Artist 0054,Country,Oceania,2018-11-01,late_bloomer,400,False
+P0055,Pool Artist 0055,Country,Europe,2017-09-01,declining,461,False
+P0056,Pool Artist 0056,Jazz,Asia,2018-10-01,declining,405,False
+P0057,Pool Artist 0057,R&B,North America,2024-05-01,late_bloomer,113,False
+P0058,Pool Artist 0058,Pop,Africa,2022-01-01,declining,235,False
+P0059,Pool Artist 0059,Pop,Latin America,2018-09-01,declining,409,False
+P0060,Pool Artist 0060,Rock,Europe,2022-11-01,one_hit,191,False
+P0061,Pool Artist 0061,Country,Asia,2024-08-01,slow_burn,100,False
+P0062,Pool Artist 0062,Indie,Europe,2024-06-01,breakout,109,False
+P0063,Pool Artist 0063,Indie,Latin America,2017-11-01,late_bloomer,452,False
+P0064,Pool Artist 0064,Metal,Middle East,2024-12-01,steady_star,83,False
+P0065,Pool Artist 0065,Afrobeats,Oceania,2021-08-01,declining,257,False
+P0066,Pool Artist 0066,Jazz,Oceania,2018-05-01,late_bloomer,426,False
+P0067,Pool Artist 0067,Indie,Asia,2020-06-01,declining,318,False
+P0068,Pool Artist 0068,Electronic,Oceania,2024-10-01,late_bloomer,91,False
+P0069,Pool Artist 0069,Pop,Middle East,2022-05-01,late_bloomer,218,False
+P0070,Pool Artist 0070,Latin,Oceania,2018-12-01,one_hit,396,False
+P0071,Pool Artist 0071,Jazz,Asia,2019-07-01,one_hit,366,False
+P0072,Pool Artist 0072,Afrobeats,Asia,2023-08-01,one_hit,152,False
+P0073,Pool Artist 0073,Rock,Latin America,2022-07-01,slow_burn,209,False
+P0074,Pool Artist 0074,Afrobeats,Asia,2023-11-01,breakout,139,False
+P0075,Pool Artist 0075,Folk,Latin America,2023-05-01,late_bloomer,166,False
+P0076,Pool Artist 0076,Pop,North America,2019-01-01,breakout,391,False
+P0077,Pool Artist 0077,Hip-Hop,North America,2015-12-01,slow_burn,552,False
+P0078,Pool Artist 0078,Folk,Oceania,2019-04-01,steady_star,379,False
+P0079,Pool Artist 0079,Metal,Asia,2021-12-01,declining,239,False
+P0080,Pool Artist 0080,Metal,Middle East,2016-06-01,slow_burn,526,False
+P0081,Pool Artist 0081,Jazz,Middle East,2016-06-01,slow_burn,526,False
+P0082,Pool Artist 0082,Jazz,North America,2018-05-01,breakout,426,False
+P0083,Pool Artist 0083,Folk,North America,2021-08-01,steady_star,257,False
+P0084,Pool Artist 0084,Pop,Asia,2018-04-01,late_bloomer,431,False
+P0085,Pool Artist 0085,R&B,North America,2018-02-01,breakout,439,False
+P0086,Pool Artist 0086,Electronic,Latin America,2018-04-01,one_hit,431,False
+P0087,Pool Artist 0087,Rock,Oceania,2017-03-01,slow_burn,487,False
+P0088,Pool Artist 0088,Country,North America,2020-01-01,late_bloomer,339,False
+P0089,Pool Artist 0089,Folk,Africa,2018-08-01,breakout,413,False
+P0090,Pool Artist 0090,Afrobeats,Middle East,2016-03-01,late_bloomer,539,False
+P0091,Pool Artist 0091,Folk,Asia,2016-01-01,slow_burn,548,False
+P0092,Pool Artist 0092,Hip-Hop,Africa,2022-04-01,one_hit,222,False
+P0093,Pool Artist 0093,Pop,Middle East,2018-11-01,breakout,400,False
+P0094,Pool Artist 0094,Pop,Oceania,2021-02-01,breakout,283,False
+P0095,Pool Artist 0095,Indie,Africa,2023-05-01,steady_star,166,False
+P0096,Pool Artist 0096,Metal,Oceania,2016-09-01,declining,513,False
+P0097,Pool Artist 0097,Metal,Europe,2016-08-01,slow_burn,518,False
+P0098,Pool Artist 0098,Afrobeats,Europe,2017-04-01,late_bloomer,483,False
+P0099,Pool Artist 0099,Hip-Hop,North America,2023-06-01,breakout,161,False
+P0100,Pool Artist 0100,Indie,Middle East,2024-09-01,steady_star,96,False
+P0101,Pool Artist 0101,Electronic,North America,2017-03-01,steady_star,487,False
+P0102,Pool Artist 0102,Rock,Latin America,2015-01-01,one_hit,600,False
+P0103,Pool Artist 0103,Folk,Oceania,2019-03-01,slow_burn,383,False
+P0104,Pool Artist 0104,Indie,Latin America,2021-02-01,declining,283,False
+P0105,Pool Artist 0105,R&B,Oceania,2022-11-01,one_hit,191,False
+P0106,Pool Artist 0106,R&B,North America,2019-01-01,steady_star,391,False
+P0107,Pool Artist 0107,Jazz,Oceania,2022-09-01,late_bloomer,200,False
+P0108,Pool Artist 0108,Jazz,Asia,2018-10-01,late_bloomer,405,False
+P0109,Pool Artist 0109,Indie,North America,2021-10-01,declining,248,False
+P0110,Pool Artist 0110,Afrobeats,Latin America,2015-11-01,slow_burn,557,False
+P0111,Pool Artist 0111,Country,Latin America,2019-10-01,breakout,352,False
+P0112,Pool Artist 0112,Hip-Hop,Asia,2018-02-01,steady_star,439,False
+P0113,Pool Artist 0113,Country,Asia,2024-05-01,steady_star,113,False
+P0114,Pool Artist 0114,Latin,Middle East,2022-03-01,breakout,226,False
+P0115,Pool Artist 0115,Metal,Middle East,2021-12-01,declining,239,False
+P0116,Pool Artist 0116,Jazz,Africa,2022-01-01,declining,235,False
+P0117,Pool Artist 0117,Folk,Africa,2023-03-01,one_hit,174,False
+P0118,Pool Artist 0118,Pop,Latin America,2019-02-01,steady_star,387,False
+P0119,Pool Artist 0119,Indie,Europe,2016-01-01,late_bloomer,548,False
+P0120,Pool Artist 0120,Latin,Asia,2015-07-01,breakout,574,False
+P0121,Pool Artist 0121,Metal,Europe,2015-01-01,late_bloomer,600,False
+P0122,Pool Artist 0122,Jazz,Middle East,2015-06-01,steady_star,579,False
+P0123,Pool Artist 0123,Jazz,North America,2023-10-01,slow_burn,144,False
+P0124,Pool Artist 0124,Country,Latin America,2022-01-01,slow_burn,235,False
+P0125,Pool Artist 0125,Folk,Africa,2016-01-01,breakout,548,False
+P0126,Pool Artist 0126,Hip-Hop,Latin America,2018-10-01,slow_burn,405,False
+P0127,Pool Artist 0127,Metal,Asia,2017-02-01,one_hit,491,False
+P0128,Pool Artist 0128,Country,Europe,2018-10-01,one_hit,405,False
+P0129,Pool Artist 0129,Indie,North America,2022-03-01,steady_star,226,False
+P0130,Pool Artist 0130,Afrobeats,Europe,2018-04-01,one_hit,431,False
+P0131,Pool Artist 0131,Jazz,Middle East,2024-02-01,steady_star,126,False
+P0132,Pool Artist 0132,Indie,Europe,2024-08-01,steady_star,100,False
+P0133,Pool Artist 0133,Jazz,Asia,2021-06-01,late_bloomer,265,False
+P0134,Pool Artist 0134,Jazz,Africa,2018-11-01,slow_burn,400,False
+P0135,Pool Artist 0135,Electronic,North America,2016-07-01,declining,522,False
+P0136,Pool Artist 0136,Afrobeats,Asia,2017-04-01,slow_burn,483,False
+P0137,Pool Artist 0137,Electronic,Oceania,2022-08-01,late_bloomer,205,False
+P0138,Pool Artist 0138,Rock,Asia,2020-02-01,breakout,335,False
+P0139,Pool Artist 0139,Country,Oceania,2024-04-01,late_bloomer,118,False
+P0140,Pool Artist 0140,Pop,Asia,2017-08-01,one_hit,465,False
+P0141,Pool Artist 0141,Folk,Oceania,2015-07-01,steady_star,574,False
+P0142,Pool Artist 0142,Indie,Oceania,2021-03-01,one_hit,279,False
+P0143,Pool Artist 0143,Pop,Africa,2015-08-01,slow_burn,570,False
+P0144,Pool Artist 0144,Folk,Asia,2015-04-01,breakout,587,False
+P0145,Pool Artist 0145,Folk,Middle East,2016-07-01,one_hit,522,False
+P0146,Pool Artist 0146,Indie,Asia,2022-09-01,late_bloomer,200,False
+P0147,Pool Artist 0147,Country,Middle East,2023-10-01,declining,144,False
+P0148,Pool Artist 0148,Indie,Latin America,2021-04-01,late_bloomer,274,False
+P0149,Pool Artist 0149,Country,Africa,2018-05-01,late_bloomer,426,False
+P0150,Pool Artist 0150,Jazz,Africa,2020-05-01,slow_burn,322,False
+P0151,Pool Artist 0151,Hip-Hop,Europe,2021-03-01,slow_burn,279,False
+P0152,Pool Artist 0152,Indie,North America,2020-06-01,one_hit,318,False
+P0153,Pool Artist 0153,Pop,Africa,2021-07-01,slow_burn,261,False
+P0154,Pool Artist 0154,Electronic,Europe,2020-12-01,declining,291,False
+P0155,Pool Artist 0155,Afrobeats,Latin America,2020-04-01,late_bloomer,326,False
+P0156,Pool Artist 0156,Folk,Oceania,2015-06-01,breakout,579,False
+P0157,Pool Artist 0157,Afrobeats,Latin America,2020-03-01,slow_burn,331,False
+P0158,Pool Artist 0158,Electronic,Middle East,2016-02-01,one_hit,544,False
+P0159,Pool Artist 0159,Rock,Middle East,2020-01-01,declining,339,False
+P0160,Pool Artist 0160,Afrobeats,Latin America,2021-02-01,declining,283,False
+P0161,Pool Artist 0161,Electronic,Asia,2024-07-01,declining,105,False
+P0162,Pool Artist 0162,Latin,Middle East,2023-10-01,late_bloomer,144,False
+P0163,Pool Artist 0163,Electronic,Asia,2016-09-01,breakout,513,False
+P0164,Pool Artist 0164,Afrobeats,Middle East,2023-07-01,breakout,157,False
+P0165,Pool Artist 0165,Rock,Asia,2021-10-01,late_bloomer,248,False
+P0166,Pool Artist 0166,R&B,Africa,2023-03-01,declining,174,False
+P0167,Pool Artist 0167,Country,Middle East,2018-11-01,late_bloomer,400,False
+P0168,Pool Artist 0168,Pop,Europe,2018-02-01,declining,439,False
+P0169,Pool Artist 0169,Indie,Africa,2022-04-01,one_hit,222,False
+P0170,Pool Artist 0170,Pop,North America,2017-11-01,one_hit,452,False
+P0171,Pool Artist 0171,Afrobeats,Latin America,2024-03-01,declining,122,False
+P0172,Pool Artist 0172,R&B,Latin America,2019-02-01,declining,387,False
+P0173,Pool Artist 0173,Latin,Africa,2023-12-01,slow_burn,135,False
+P0174,Pool Artist 0174,Metal,Middle East,2024-07-01,breakout,105,False
+P0175,Pool Artist 0175,Pop,Asia,2024-06-01,steady_star,109,False
+P0176,Pool Artist 0176,Pop,Europe,2017-06-01,slow_burn,474,False
+P0177,Pool Artist 0177,Rock,Europe,2018-06-01,one_hit,422,False
+P0178,Pool Artist 0178,Jazz,Asia,2019-12-01,slow_burn,344,False
+P0179,Pool Artist 0179,Latin,North America,2015-12-01,slow_burn,552,False
+P0180,Pool Artist 0180,Metal,Africa,2020-03-01,slow_burn,331,False
+P0181,Pool Artist 0181,Hip-Hop,North America,2023-07-01,one_hit,157,False
+P0182,Pool Artist 0182,Pop,Middle East,2018-12-01,late_bloomer,396,False
+P0183,Pool Artist 0183,Electronic,Middle East,2020-03-01,late_bloomer,331,False
+P0184,Pool Artist 0184,Metal,Europe,2016-08-01,breakout,518,False
+P0185,Pool Artist 0185,Hip-Hop,Europe,2017-05-01,slow_burn,479,False
+P0186,Pool Artist 0186,Metal,Middle East,2023-06-01,late_bloomer,161,False
+P0187,Pool Artist 0187,Indie,Oceania,2022-12-01,steady_star,187,False
+P0188,Pool Artist 0188,Country,Oceania,2016-05-01,late_bloomer,531,False
+P0189,Pool Artist 0189,Hip-Hop,Middle East,2015-10-01,slow_burn,561,False
+P0190,Pool Artist 0190,Indie,Europe,2016-05-01,declining,531,False
+P0191,Pool Artist 0191,R&B,Europe,2022-03-01,steady_star,226,False
+P0192,Pool Artist 0192,Jazz,North America,2023-12-01,steady_star,135,False
+P0193,Pool Artist 0193,Afrobeats,North America,2015-11-01,late_bloomer,557,False
+P0194,Pool Artist 0194,Latin,Latin America,2022-07-01,slow_burn,209,False
+P0195,Pool Artist 0195,Metal,North America,2024-06-01,late_bloomer,109,False
+P0196,Pool Artist 0196,Electronic,Oceania,2021-07-01,breakout,261,False
+P0197,Pool Artist 0197,Indie,Europe,2023-07-01,slow_burn,157,False
+P0198,Pool Artist 0198,Pop,North America,2021-12-01,breakout,239,False
+P0199,Pool Artist 0199,Folk,Asia,2023-02-01,steady_star,178,False
+P0200,Pool Artist 0200,Folk,North America,2022-06-01,late_bloomer,213,False
+P0201,Pool Artist 0201,Latin,Latin America,2016-08-01,late_bloomer,518,False
+P0202,Pool Artist 0202,Hip-Hop,Oceania,2021-03-01,late_bloomer,279,False
+P0203,Pool Artist 0203,Pop,Africa,2017-08-01,late_bloomer,465,False
+P0204,Pool Artist 0204,Hip-Hop,Europe,2015-12-01,steady_star,552,False
+P0205,Pool Artist 0205,Electronic,Middle East,2017-03-01,declining,487,False
+P0206,Pool Artist 0206,Electronic,North America,2024-07-01,declining,105,False
+P0207,Pool Artist 0207,Folk,Europe,2018-05-01,one_hit,426,False
+P0208,Pool Artist 0208,Latin,North America,2021-05-01,breakout,270,False
+P0209,Pool Artist 0209,Rock,Africa,2018-07-01,steady_star,418,False
+P0210,Pool Artist 0210,Electronic,Middle East,2019-08-01,late_bloomer,361,False
+P0211,Pool Artist 0211,Latin,North America,2020-11-01,one_hit,296,False
+P0212,Pool Artist 0212,Hip-Hop,Asia,2019-12-01,breakout,344,False
+P0213,Pool Artist 0213,Hip-Hop,Oceania,2024-05-01,slow_burn,113,False
+P0214,Pool Artist 0214,Country,North America,2018-01-01,late_bloomer,444,False
+P0215,Pool Artist 0215,Jazz,Middle East,2019-04-01,late_bloomer,379,False
+P0216,Pool Artist 0216,Country,Latin America,2017-09-01,late_bloomer,461,False
+P0217,Pool Artist 0217,Jazz,Middle East,2023-04-01,late_bloomer,170,False
+P0218,Pool Artist 0218,R&B,Asia,2017-05-01,late_bloomer,479,False
+P0219,Pool Artist 0219,Rock,Africa,2015-03-01,slow_burn,592,False
+P0220,Pool Artist 0220,R&B,North America,2018-04-01,slow_burn,431,False
+P0221,Pool Artist 0221,Electronic,Middle East,2022-04-01,breakout,222,False
+P0222,Pool Artist 0222,Folk,Oceania,2018-01-01,steady_star,444,False
+P0223,Pool Artist 0223,Folk,Oceania,2019-11-01,late_bloomer,348,False
+P0224,Pool Artist 0224,Hip-Hop,Africa,2019-04-01,one_hit,379,False
+P0225,Pool Artist 0225,Jazz,North America,2021-04-01,declining,274,False
+P0226,Pool Artist 0226,Pop,North America,2015-03-01,slow_burn,592,False
+P0227,Pool Artist 0227,Hip-Hop,Africa,2017-08-01,declining,465,False
+P0228,Pool Artist 0228,Electronic,Africa,2024-10-01,declining,91,False
+P0229,Pool Artist 0229,Electronic,Latin America,2015-10-01,slow_burn,561,False
+P0230,Pool Artist 0230,Latin,Oceania,2024-09-01,slow_burn,96,False
+P0231,Pool Artist 0231,Electronic,Latin America,2023-09-01,late_bloomer,148,False
+P0232,Pool Artist 0232,Latin,Africa,2019-10-01,steady_star,352,False
+P0233,Pool Artist 0233,Pop,Latin America,2024-12-01,one_hit,83,False
+P0234,Pool Artist 0234,Indie,Africa,2023-10-01,late_bloomer,144,False
+P0235,Pool Artist 0235,Indie,Middle East,2021-01-01,breakout,287,False
+P0236,Pool Artist 0236,Hip-Hop,Middle East,2021-03-01,one_hit,279,False
+P0237,Pool Artist 0237,Latin,Latin America,2016-05-01,one_hit,531,False
+P0238,Pool Artist 0238,Latin,Asia,2015-07-01,declining,574,False
+P0239,Pool Artist 0239,Afrobeats,Europe,2024-02-01,slow_burn,126,False
+P0240,Pool Artist 0240,Country,Latin America,2018-11-01,one_hit,400,False
+P0241,Pool Artist 0241,Afrobeats,North America,2021-01-01,steady_star,287,False
+P0242,Pool Artist 0242,Jazz,Latin America,2018-05-01,declining,426,False
+P0243,Pool Artist 0243,Jazz,Oceania,2021-11-01,late_bloomer,244,False
+P0244,Pool Artist 0244,Rock,North America,2024-04-01,one_hit,118,False
+P0245,Pool Artist 0245,Afrobeats,Middle East,2020-08-01,declining,309,False
+P0246,Pool Artist 0246,Pop,Europe,2018-08-01,slow_burn,413,False
+P0247,Pool Artist 0247,Hip-Hop,North America,2023-03-01,breakout,174,False
+P0248,Pool Artist 0248,Hip-Hop,Africa,2023-08-01,slow_burn,152,False
+P0249,Pool Artist 0249,Rock,Europe,2019-09-01,steady_star,357,False
+P0250,Pool Artist 0250,Pop,Middle East,2015-08-01,slow_burn,570,False
+P0251,Pool Artist 0251,Folk,Asia,2022-05-01,slow_burn,218,False
+P0252,Pool Artist 0252,Metal,Africa,2016-06-01,one_hit,526,False
+P0253,Pool Artist 0253,R&B,Africa,2020-12-01,steady_star,291,False
+P0254,Pool Artist 0254,Hip-Hop,Europe,2022-11-01,slow_burn,191,False
+P0255,Pool Artist 0255,Latin,Africa,2019-01-01,slow_burn,391,False
+P0256,Pool Artist 0256,Electronic,North America,2024-03-01,breakout,122,False
+P0257,Pool Artist 0257,Country,North America,2018-08-01,slow_burn,413,False
+P0258,Pool Artist 0258,R&B,Latin America,2019-02-01,steady_star,387,False
+P0259,Pool Artist 0259,R&B,Europe,2021-08-01,slow_burn,257,False
+P0260,Pool Artist 0260,Indie,Europe,2016-03-01,breakout,539,False
+P0261,Pool Artist 0261,Jazz,Middle East,2015-10-01,one_hit,561,False
+P0262,Pool Artist 0262,Jazz,Africa,2015-06-01,breakout,579,False
+P0263,Pool Artist 0263,Electronic,Asia,2023-08-01,steady_star,152,False
+P0264,Pool Artist 0264,Metal,Africa,2018-07-01,one_hit,418,False
+P0265,Pool Artist 0265,Electronic,Latin America,2024-05-01,breakout,113,False
+P0266,Pool Artist 0266,Jazz,North America,2023-01-01,one_hit,183,False
+P0267,Pool Artist 0267,Afrobeats,Latin America,2022-02-01,declining,230,False
+P0268,Pool Artist 0268,R&B,Latin America,2017-04-01,one_hit,483,False
+P0269,Pool Artist 0269,Rock,Europe,2022-12-01,late_bloomer,187,False
+P0270,Pool Artist 0270,Country,Middle East,2023-08-01,one_hit,152,False
+P0271,Pool Artist 0271,R&B,Latin America,2018-10-01,breakout,405,False
+P0272,Pool Artist 0272,Electronic,Africa,2024-02-01,late_bloomer,126,False
+P0273,Pool Artist 0273,Pop,Oceania,2017-05-01,declining,479,False
+P0274,Pool Artist 0274,Metal,Africa,2017-06-01,breakout,474,False
+P0275,Pool Artist 0275,Rock,Oceania,2015-07-01,breakout,574,False
+P0276,Pool Artist 0276,Folk,Asia,2017-12-01,slow_burn,448,False
+P0277,Pool Artist 0277,Country,Asia,2016-09-01,declining,513,False
+P0278,Pool Artist 0278,Folk,North America,2015-09-01,slow_burn,565,False
+P0279,Pool Artist 0279,Electronic,Oceania,2020-08-01,one_hit,309,False
+P0280,Pool Artist 0280,Latin,Middle East,2024-03-01,declining,122,False
+P0281,Pool Artist 0281,Hip-Hop,Africa,2019-08-01,steady_star,361,False
+P0282,Pool Artist 0282,Hip-Hop,Latin America,2015-06-01,late_bloomer,579,False
+P0283,Pool Artist 0283,Folk,North America,2020-09-01,late_bloomer,304,False
+P0284,Pool Artist 0284,Latin,Asia,2015-04-01,steady_star,587,False
+P0285,Pool Artist 0285,Folk,Oceania,2015-02-01,late_bloomer,596,False
+P0286,Pool Artist 0286,Jazz,Europe,2020-06-01,slow_burn,318,False
+P0287,Pool Artist 0287,Indie,Latin America,2015-01-01,breakout,600,False
+P0288,Pool Artist 0288,Metal,Africa,2019-05-01,slow_burn,374,False

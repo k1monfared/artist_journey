@@ -1,0 +1,232 @@
+{
+  "definition": "An artist breaks through if, in the target year (the observation year plus 3 years), they are in the upper right quadrant, both centered coordinates greater than zero, or in the top quartile of centered streams, having started below that at the observation year. Artists already in that region at observation are excluded, since the axes are centered on the yearly median the origin is the median.",
+  "horizon_years": 3,
+  "observation": "first full year on the plane, movement over the next year",
+  "n_samples": 130,
+  "n_train": 91,
+  "n_test": 39,
+  "base_rate": 0.1923,
+  "metrics": {
+    "accuracy": 0.8205,
+    "roc_auc": 0.879,
+    "precision": 0.5455,
+    "recall": 0.75,
+    "f1": 0.6316,
+    "confusion": {
+      "tn": 26,
+      "fp": 5,
+      "fn": 2,
+      "tp": 6
+    }
+  },
+  "baselines": {
+    "coin_toss": {
+      "accuracy": 0.5,
+      "roc_auc": 0.5
+    },
+    "majority_class": {
+      "accuracy": 0.7949,
+      "predicts": 0,
+      "base_rate": 0.1923
+    }
+  },
+  "model": {
+    "type": "logistic_regression",
+    "features": [
+      "x0",
+      "y0",
+      "dx",
+      "dy"
+    ],
+    "coef": [
+      3.7125,
+      0.6879,
+      0.3404,
+      0.7688
+    ],
+    "intercept": 0.7532,
+    "mean_dx": 0.0492,
+    "mean_dy": 0.0644
+  },
+  "examples": [
+    {
+      "kind": "TP",
+      "artist_id": "P0082",
+      "name": "Pool Artist 0082",
+      "obs_year": 2019,
+      "target_year": 2022,
+      "x0": -0.1546,
+      "y0": -0.4026,
+      "dx": 0.1145,
+      "dy": 0.3729,
+      "proba": 0.5567,
+      "pred": 1,
+      "actual": 1
+    },
+    {
+      "kind": "TP",
+      "artist_id": "P0196",
+      "name": "Pool Artist 0196",
+      "obs_year": 2022,
+      "target_year": 2025,
+      "x0": 0.0986,
+      "y0": -0.3204,
+      "dx": 0.0325,
+      "dy": 0.3695,
+      "proba": 0.7674,
+      "pred": 1,
+      "actual": 1
+    },
+    {
+      "kind": "TN",
+      "artist_id": "P0101",
+      "name": "Pool Artist 0101",
+      "obs_year": 2018,
+      "target_year": 2021,
+      "x0": -0.4996,
+      "y0": -0.1405,
+      "dx": 0.0281,
+      "dy": 0.0549,
+      "proba": 0.2411,
+      "pred": 0,
+      "actual": 0
+    },
+    {
+      "kind": "TN",
+      "artist_id": "P0088",
+      "name": "Pool Artist 0088",
+      "obs_year": 2020,
+      "target_year": 2023,
+      "x0": -0.7652,
+      "y0": -0.8015,
+      "dx": 0.1254,
+      "dy": 0.0332,
+      "proba": 0.071,
+      "pred": 0,
+      "actual": 0
+    },
+    {
+      "kind": "FP",
+      "artist_id": "P0116",
+      "name": "Pool Artist 0116",
+      "obs_year": 2022,
+      "target_year": 2025,
+      "x0": -0.0278,
+      "y0": 0.1868,
+      "dx": -0.0814,
+      "dy": -0.1574,
+      "proba": 0.6524,
+      "pred": 1,
+      "actual": 0
+    },
+    {
+      "kind": "FP",
+      "artist_id": "P0054",
+      "name": "Pool Artist 0054",
+      "obs_year": 2019,
+      "target_year": 2022,
+      "x0": 0.0783,
+      "y0": -0.0941,
+      "dx": 0.1274,
+      "dy": -0.0119,
+      "proba": 0.7337,
+      "pred": 1,
+      "actual": 0
+    },
+    {
+      "kind": "FN",
+      "artist_id": "P0093",
+      "name": "Pool Artist 0093",
+      "obs_year": 2019,
+      "target_year": 2022,
+      "x0": -0.2704,
+      "y0": -0.4336,
+      "dx": 0.1484,
+      "dy": 0.0117,
+      "proba": 0.38,
+      "pred": 0,
+      "actual": 1
+    },
+    {
+      "kind": "FN",
+      "artist_id": "P0274",
+      "name": "Pool Artist 0274",
+      "obs_year": 2018,
+      "target_year": 2021,
+      "x0": -0.1868,
+      "y0": -0.4467,
+      "dx": 0.0493,
+      "dy": 0.0722,
+      "proba": 0.4563,
+      "pred": 0,
+      "actual": 1
+    }
+  ],
+  "highlight": [
+    {
+      "id": "A03",
+      "name": "Kaito Sol",
+      "obs_year": 2020,
+      "target_year": 2023,
+      "x0": -0.0845,
+      "y0": -0.1714,
+      "dx": 0.1219,
+      "dy": 0.1488,
+      "proba": 0.6171,
+      "pred": 1,
+      "actual": 1
+    },
+    {
+      "id": "A06",
+      "name": "Echo Park Twins",
+      "obs_year": 2021,
+      "target_year": 2024,
+      "x0": 0.0458,
+      "y0": -0.1374,
+      "dx": 0.2444,
+      "dy": 0.2844,
+      "proba": 0.7559,
+      "pred": 1,
+      "actual": 1
+    },
+    {
+      "id": "A08",
+      "name": "Basslake",
+      "obs_year": 2022,
+      "target_year": 2025,
+      "x0": 0.0012,
+      "y0": -0.1733,
+      "dx": -0.0523,
+      "dy": 0.0713,
+      "proba": 0.6627,
+      "pred": 1,
+      "actual": 1
+    },
+    {
+      "id": "A10",
+      "name": "Zephyr Kane",
+      "obs_year": 2022,
+      "target_year": 2025,
+      "x0": 0.2295,
+      "y0": -0.1416,
+      "dx": 0.1501,
+      "dy": 0.3676,
+      "proba": 0.8631,
+      "pred": 1,
+      "actual": 1
+    },
+    {
+      "id": "A11",
+      "name": "Amara Diop",
+      "obs_year": 2022,
+      "target_year": 2025,
+      "x0": 0.1514,
+      "y0": -0.1801,
+      "dx": 0.0691,
+      "dy": -0.0517,
+      "proba": 0.7641,
+      "pred": 1,
+      "actual": 1
+    }
+  ]
+}

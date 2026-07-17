@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Artist Journey and Comparison Framework</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<style>
+  :root {
+    --bg: #0f1420;
+    --panel: #171e2e;
+    --panel-2: #1e2740;
+    --line: #2b3752;
+    --text: #e7ecf5;
+    --muted: #9aa7bd;
+    --accent: #4ea1ff;
+    --good: #2ecf9a;
+    --chip: #223052;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  header {
+    padding: 22px 28px 16px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, #131a29, #0f1420);
+  }
+  header h1 { margin: 0 0 4px; font-size: 20px; letter-spacing: 0.2px; }
+  header p { margin: 0; color: var(--muted); font-size: 13px; max-width: 900px; }
+  .wrap { display: grid; grid-template-columns: 300px 1fr; gap: 0; min-height: calc(100vh - 92px); }
+  aside {
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+    padding: 18px;
+    overflow-y: auto;
+    max-height: calc(100vh - 92px);
+  }
+  main { padding: 18px 22px; }
+  .group { margin-bottom: 20px; }
+  .group h2 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px;
+    color: var(--muted); margin: 0 0 10px; font-weight: 600;
+  }
+  .seg { display: flex; flex-wrap: wrap; gap: 6px; }
+  .seg button {
+    background: var(--panel-2); color: var(--text); border: 1px solid var(--line);
+    padding: 7px 11px; border-radius: 7px; font-size: 12.5px; cursor: pointer;
+    transition: all .12s ease;
+  }
+  .seg button:hover { border-color: var(--accent); }
+  .seg button.active { background: var(--accent); border-color: var(--accent); color: #06101f; font-weight: 600; }
+  .toggle-row { display: flex; align-items: center; gap: 8px; margin: 8px 0; font-size: 13px; }
+  .toggle-row input { accent-color: var(--accent); width: 15px; height: 15px; }
+  .artist-list { display: flex; flex-direction: column; gap: 3px; }
+  .artist-item {
+    display: flex; align-items: center; gap: 9px; padding: 6px 8px; border-radius: 6px;
+    cursor: pointer; font-size: 13px; border: 1px solid transparent;
+  }
+  .artist-item:hover { background: var(--panel-2); }
+  .artist-item input { accent-color: var(--accent); }
+  .swatch { width: 11px; height: 11px; border-radius: 3px; flex: 0 0 auto; }
+  .artist-item .meta { color: var(--muted); font-size: 11px; margin-left: auto; }
+  .rank-badge {
+    font-size: 10.5px; background: var(--chip); color: var(--muted);
+    border-radius: 4px; padding: 1px 5px; margin-left: 4px;
+  }
+  .rank-badge.top { background: rgba(46,207,154,0.16); color: var(--good); }
+  .btn-mini {
+    background: none; border: 1px solid var(--line); color: var(--muted);
+    padding: 4px 8px; border-radius: 6px; font-size: 11.5px; cursor: pointer;
+  }
+  .btn-mini:hover { border-color: var(--accent); color: var(--text); }
+  #chart { width: 100%; height: 560px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin-top: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 13px 15px; }
+  .card h3 { margin: 0 0 2px; font-size: 14px; display: flex; align-items: center; gap: 7px; }
+  .card .sub { color: var(--muted); font-size: 11.5px; margin-bottom: 8px; }
+  .card .score { font-size: 22px; font-weight: 700; color: var(--good); }
+  .card .rationale { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .kv { display: flex; justify-content: space-between; font-size: 12px; padding: 2px 0; }
+  .kv span:first-child { color: var(--muted); }
+  .section-title { font-size: 15px; margin: 26px 0 4px; }
+  .section-note { color: var(--muted); font-size: 12.5px; margin: 0 0 6px; }
+  a { color: var(--accent); }
+  .footer { color: var(--muted); font-size: 12px; padding: 20px 4px 40px; }
+  .legend-hint { color: var(--muted); font-size: 11.5px; margin-top: 8px; }
+  .tabbar { display: flex; gap: 2px; border-bottom: 1px solid var(--line); flex-wrap: wrap; margin-bottom: 12px; }
+  .tabbar button {
+    background: none; border: none; color: var(--muted); padding: 10px 15px;
+    font-size: 13.5px; cursor: pointer; border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tabbar button:hover { color: var(--text); }
+  .tabbar button.active { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+  .tab-caption { color: var(--muted); font-size: 12.5px; margin: 0 0 12px; max-width: 900px; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 10px 0 4px; }
+  .metric-tile { background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 11px 13px; }
+  .metric-tile .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .metric-tile .value { font-size: 20px; font-weight: 700; margin-top: 2px; }
+  .metric-tile .value.good { color: var(--good); }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .data-table th { text-align: left; color: var(--muted); border-bottom: 1px solid var(--line); padding: 6px 8px; }
+  .data-table td { border-bottom: 1px solid #212b42; padding: 6px 8px; }
+  .pill { border-radius: 4px; padding: 1px 6px; font-size: 11px; }
+  .pill.yes { background: rgba(46,207,154,0.16); color: var(--good); }
+  .pill.no { background: rgba(255,123,123,0.16); color: #ff9a9a; }
+  .pill.tp { background: rgba(46,207,154,0.16); color: var(--good); }
+  .pill.tn { background: rgba(122,208,255,0.14); color: #7ad0ff; }
+  .pill.fp { background: rgba(255,159,64,0.16); color: #ffb774; }
+  .pill.fn { background: rgba(255,123,123,0.16); color: #ff9a9a; }
+  select.control { width: 100%; background: var(--panel-2); color: var(--text); border: 1px solid var(--line); border-radius: 7px; padding: 8px; font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Artist Journey and Comparison Framework</h1>
+  <p style="margin:0 0 8px; font-size:12.5px; font-weight:700; color:var(--accent);">This is built on synthetic data.</p>
+  <p>An interactive dashboard over a synthetic artist roster and a pool of a few hundred artists. The development quadrant places every artist by total yearly placements versus total yearly streams on a fixed plane normalized against the pool, and continues each path with a recursive forecast. Other tabs trace a single artist over time, align artists on career age with both raw and normalized values, and rank the roster for investment. Every number comes from one seeded simulation.</p>
+</header>
+
+<div class="wrap">
+  <aside>
+    <div class="group" id="group-quadopts" style="display:none;">
+      <h2>Quadrant options</h2>
+      <label class="toggle-row"><input type="checkbox" id="toggle-history" checked /> Show history (paths)</label>
+      <label class="toggle-row"><input type="checkbox" id="toggle-predictions" checked /> Show predictions</label>
+      <div class="legend-hint">History off shows only each artist's latest position. Predictions continue each path with the recursive forecast, drawn with dashed markers at the 1, 2, 5, and 10 year ahead horizons.</div>
+    </div>
+
+    <div class="group" id="group-metric">
+      <h2>Metric</h2>
+      <div class="seg" id="metric-seg">
+        <button data-metric="streams" class="active">Streams</button>
+        <button data-metric="followers">Followers</button>
+        <button data-metric="playlist_adds">Playlist adds</button>
+      </div>
+    </div>
+
+    <div class="group" id="group-overlays">
+      <h2>Overlays</h2>
+      <label class="toggle-row"><input type="checkbox" id="toggle-releases" checked /> Release markers</label>
+      <label class="toggle-row"><input type="checkbox" id="toggle-projection" /> Projected trajectory (streams)</label>
+      <label class="toggle-row"><input type="checkbox" id="toggle-log" /> Log scale</label>
+    </div>
+
+    <div class="group" id="group-artists">
+      <h2>Artists</h2>
+      <div style="display:flex; gap:6px; margin-bottom:8px;">
+        <button class="btn-mini" id="btn-top3">Top 3</button>
+        <button class="btn-mini" id="btn-all">All</button>
+        <button class="btn-mini" id="btn-none">None</button>
+      </div>
+      <div class="artist-list" id="artist-list"></div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="tabbar" id="tabbar"></div>
+    <p class="tab-caption" id="tab-caption"></p>
+
+    <div id="chart-wrap">
+      <div id="chart"></div>
+      <div class="legend-hint">Tip: click a name in the plot legend to hide or show it. Drag to zoom, double click to reset.</div>
+    </div>
+
+    <div id="yearly-wrap" style="display:none;">
+      <h2 class="section-title">Yearly totals and recursive forecast</h2>
+      <p class="section-note" id="yearly-note"></p>
+      <div id="chart-streams-yearly" style="width:100%; height:320px; background:var(--panel); border:1px solid var(--line); border-radius:10px; margin-bottom:14px;"></div>
+      <div id="chart-plac-yearly" style="width:100%; height:320px; background:var(--panel); border:1px solid var(--line); border-radius:10px;"></div>
+    </div>
+
+    <div id="rankings-wrap" style="display:none;">
+      <h2 class="section-title">Investment shortlist</h2>
+      <p class="section-note" id="shortlist-note"></p>
+      <div class="cards" id="shortlist"></div>
+
+      <h2 class="section-title">Full ranking</h2>
+      <p class="section-note">Every artist scored 0 to 100.</p>
+      <div id="full-board"></div>
+    </div>
+
+    <div class="footer" id="footer"></div>
+    <div class="footer" style="text-align:center; padding-top:0;">
+      <a href="https://github.com/k1monfared/artist_journey">Source code on GitHub</a>
+    </div>
+  </main>
+</div>
+
+<script>
+const PALETTE = ["#4ea1ff","#ff9f40","#2ecf9a","#e879c7","#f7d154","#7ad0ff","#c3f584","#ff7b7b","#b39cff","#5fd0c0","#ffb3d1","#a0e57a"];
+const METRIC_LABEL = {streams:"Weekly streams", followers:"Followers", playlist_adds:"Playlist adds"};
+// On the quadrant only, the predicted trajectory is drawn at these year ahead
+// horizons rather than every year. The full recursive forecast is still shown
+// year by year on the Trajectory over time charts.
+const QUAD_PRED_HORIZONS = [1, 2, 5, 10];
+
+let DATA = null;
+let colorById = {};
+let state = { tab:"quadrant", metric:"streams", axis:"career_month", releases:true, projection:false, log:false, selected:new Set(), showHistory:true, showPred:true };
+
+const TABS = [
+  {id:"quadrant", label:"Development quadrant"},
+  {id:"trajectory", label:"Trajectory over time"},
+  {id:"career", label:"Career-age comparison"},
+  {id:"rankings", label:"Rankings and shortlist"},
+];
+
+const TAB_CAPTIONS = {
+  quadrant:"Total placements (x) versus total streams (y). Each axis is log1p transformed then centered on the year's median and scaled into -1 to 1, so the median is the origin and the dashed cross-hair is always at (0,0). The background is a stable cloud of all artist years. Show history toggles between full year by year paths and each artist's latest position only. Show predictions continues each path with the recursive forecast, a dashed line to the 1, 2, 5, and 10 year ahead positions extending from the latest observed point. Hover any point for both the normalized value and the raw total.",
+  trajectory:"A single artist over time on calendar dates. Overlay several artists, switch the metric, add release markers, the projected trajectory, or a log scale. Below, the yearly totals of streams and placement adds continue into the recursive forecast, shown dashed.",
+  career:"The same weekly series aligned on career age, months since debut, so artists who debuted years apart can be compared at the same career stage. Below, the yearly totals are aligned on years since debut, with the recursive forecast dashed. Hover a yearly point for both the raw total with its unit and the normalized value on the development plane.",
+  rankings:"The roster ranked by a 0 to 100 investment score built from momentum, acceleration, reach, playlist traction, and consistency with fixed weights.",
+};
+
+function fmt(n){
+  if(n>=1e6) return (n/1e6).toFixed(2)+"M";
+  if(n>=1e3) return (n/1e3).toFixed(0)+"K";
+  return String(n);
+}
+
+function init(data){
+  DATA = data;
+  data.artists.forEach((a,i)=>{ colorById[a.id] = PALETTE[i % PALETTE.length]; });
+  // default: top 3 by rank
+  data.artists.slice().sort((a,b)=>a.metrics.rank-b.metrics.rank).slice(0,3)
+    .forEach(a=>state.selected.add(a.id));
+  buildTabs();
+  buildArtistList();
+  buildShortlist();
+  buildBoard();
+  wireControls();
+  document.getElementById("footer").textContent =
+    "Data seed " + data.meta.seed + ". Snapshot as of " + data.meta.as_of +
+    ". Momentum window " + data.meta.momentum_window_weeks + " weeks, growth window " +
+    data.meta.growth_window_weeks + " weeks, projection " + data.meta.projection_weeks + " weeks.";
+  document.getElementById("shortlist-note").textContent =
+    "Top " + data.rankings.shortlist_size + " of " + data.artists.length +
+    " artists, ranked by the blended investment score.";
+  render();
+}
+
+function buildArtistList(){
+  const list = document.getElementById("artist-list");
+  const ordered = DATA.artists.slice().sort((a,b)=>a.metrics.rank-b.metrics.rank);
+  list.innerHTML = "";
+  ordered.forEach(a=>{
+    const row = document.createElement("label");
+    row.className = "artist-item";
+    const top = a.metrics.rank <= DATA.rankings.shortlist_size;
+    const nameHtml = a.youtube_url
+      ? '<a href="'+a.youtube_url+'" target="_blank" rel="noopener">'+a.name+'</a>'
+      : a.name;
+    row.innerHTML =
+      '<input type="checkbox" data-id="'+a.id+'" '+(state.selected.has(a.id)?"checked":"")+'/>' +
+      '<span class="swatch" style="background:'+colorById[a.id]+'"></span>' +
+      '<span>'+nameHtml+'</span>' +
+      '<span class="rank-badge '+(top?"top":"")+'">#'+a.metrics.rank+'</span>' +
+      '<span class="meta">'+a.genre+'</span>';
+    list.appendChild(row);
+  });
+  list.querySelectorAll("input").forEach(cb=>{
+    cb.addEventListener("change", e=>{
+      const id = e.target.dataset.id;
+      if(e.target.checked) state.selected.add(id); else state.selected.delete(id);
+      render();
+    });
+  });
+}
+
+function syncCheckboxes(){
+  document.querySelectorAll('#artist-list input').forEach(cb=>{
+    cb.checked = state.selected.has(cb.dataset.id);
+  });
+}
+
+
+function buildTabs(){
+  const bar = document.getElementById("tabbar");
+  bar.innerHTML = "";
+  TABS.forEach(t=>{
+    const b = document.createElement("button");
+    b.textContent = t.label;
+    b.dataset.tab = t.id;
+    if(t.id === state.tab) b.classList.add("active");
+    b.addEventListener("click", ()=>{
+      state.tab = t.id;
+      bar.querySelectorAll("button").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      render();
+    });
+    bar.appendChild(b);
+  });
+}
+
+function indexOfDate(artist, dateStr){ return artist.dates.indexOf(dateStr); }
+
+// Shared number formatter for hover popups.
+function fmtFull(n){ return Math.round(n).toLocaleString("en-US"); }
+const PLAC_UNIT = "adds/yr";
+
+function buildTraces(){
+  const traces = [];
+  const metric = state.metric;
+  const useDate = state.axis === "date";
+  const selected = DATA.artists.filter(a=>state.selected.has(a.id))
+    .sort((a,b)=>a.metrics.rank-b.metrics.rank);
+
+  selected.forEach(a=>{
+    const color = colorById[a.id];
+    const x = useDate ? a.dates : a.career_month;
+    const y = a[metric];
+    traces.push({
+      type:"scatter", mode:"lines", name:a.name, x:x, y:y,
+      line:{color:color, width:2},
+      hovertemplate:"<b>"+a.name+"</b><br>"+(useDate?"%{x}":"month %{x:.1f}")+
+        "<br>"+METRIC_LABEL[metric]+": %{y:,.0f}<extra></extra>"
+    });
+
+    // Release markers
+    if(state.releases){
+      const rx=[], ry=[], rt=[];
+      a.releases.forEach(r=>{
+        const idx = indexOfDate(a, r.date);
+        if(idx<0) return;
+        rx.push(useDate ? r.date : r.career_month);
+        ry.push(y[idx]);
+        rt.push(r.title);
+      });
+      if(rx.length){
+        traces.push({
+          type:"scatter", mode:"markers", name:a.name+" releases",
+          x:rx, y:ry, showlegend:false,
+          marker:{color:color, size:9, symbol:"diamond", line:{color:"#0f1420", width:1}},
+          text:rt,
+          hovertemplate:"<b>%{text}</b><br>"+a.name+"<extra></extra>"
+        });
+      }
+    }
+
+    // Projection (streams only)
+    if(state.projection && metric==="streams"){
+      const px = useDate ? a.projection.dates : a.projection.career_month;
+      traces.push({
+        type:"scatter", mode:"lines", name:a.name+" projection",
+        x:px, y:a.projection.center, showlegend:false,
+        line:{color:color, width:2, dash:"dot"},
+        hovertemplate:"<b>"+a.name+" projected</b><br>%{y:,.0f}<extra></extra>"
+      });
+      // band
+      const bx = px.concat(px.slice().reverse());
+      const by = a.projection.upper.concat(a.projection.lower.slice().reverse());
+      traces.push({
+        type:"scatter", mode:"lines", x:bx, y:by, showlegend:false,
+        fill:"toself", fillcolor:hexToRgba(color,0.12),
+        line:{color:"rgba(0,0,0,0)"}, hoverinfo:"skip"
+      });
+    }
+  });
+  return traces;
+}
+
+function hexToRgba(hex, a){
+  const n = parseInt(hex.slice(1),16);
+  return "rgba("+((n>>16)&255)+","+((n>>8)&255)+","+(n&255)+","+a+")";
+}
+
+function renderTrajectory(){
+  const traces = buildTraces();
+  const useDate = state.axis === "date";
+  const layout = {
+    paper_bgcolor:"#171e2e", plot_bgcolor:"#171e2e",
+    font:{color:"#e7ecf5", size:12},
+    margin:{l:64, r:20, t:16, b:48},
+    xaxis:{
+      title: useDate ? "Calendar date" : "Career age (months since debut)",
+      gridcolor:"#2b3752", zeroline:false
+    },
+    yaxis:{
+      title: METRIC_LABEL[state.metric],
+      gridcolor:"#2b3752", zeroline:false,
+      type: state.log ? "log" : "linear"
+    },
+    legend:{orientation:"h", y:-0.16, font:{size:11}},
+    hovermode:"closest"
+  };
+  Plotly.react("chart", traces, layout, {responsive:true, displayModeBar:true, displaylogo:false});
+}
+
+// Hover popup for a quadrant point: both normalized coordinates and raw totals.
+const QUAD_HOVER =
+  "<br>normalized (reach %{x:.2f}, streams %{y:.2f})"+
+  "<br>streams %{customdata[1]}<br>placements %{customdata[2]} "+PLAC_UNIT+"<extra></extra>";
+
+function renderQuadrant(){
+  const q = DATA.quadrant;
+  const traces = [];
+
+  // Stable background field: all artist years pooled, same frame every year.
+  const cloud = q.cloud || {x:[], y:[]};
+  traces.push({
+    type:"scatter", mode:"markers", name:"Field, all years",
+    x:cloud.x, y:cloud.y, showlegend:false,
+    marker:{color:"#516187", size:4, opacity:0.4}, hoverinfo:"skip"
+  });
+
+  // Selected artists, either as full paths or just their latest position.
+  const traj = {};
+  q.highlight.forEach(h=>{ traj[h.id] = h; });
+  const fc = DATA.forecast.artists || {};
+  const selected = DATA.artists.filter(a=>state.selected.has(a.id))
+    .sort((a,b)=>a.metrics.rank-b.metrics.rank);
+  selected.forEach(a=>{
+    const h = traj[a.id];
+    if(!h) return;
+    const color = colorById[a.id];
+    const cd = h.years.map((yr,i)=>[yr, fmtFull(h.streams[i]), fmtFull(h.placements[i])]);
+    if(state.showHistory){
+      traces.push({
+        type:"scatter", mode:"lines+markers", name:a.name,
+        x:h.x, y:h.y, customdata:cd,
+        line:{color:color, width:2},
+        marker:{color:color, size:9, line:{color:"#0f1420", width:1}},
+        hovertemplate:"<b>"+a.name+"</b><br>year %{customdata[0]}"+QUAD_HOVER
+      });
+    } else {
+      const last = h.x.length - 1;
+      traces.push({
+        type:"scatter", mode:"markers", name:a.name,
+        x:[h.x[last]], y:[h.y[last]], customdata:[cd[last]],
+        marker:{color:color, size:13, line:{color:"#0f1420", width:1}},
+        hovertemplate:"<b>"+a.name+"</b><br>latest year %{customdata[0]}"+QUAD_HOVER
+      });
+    }
+
+    // Recursive forecast: dashed continuation from the latest observed point,
+    // drawn only at the 1, 2, 5, and 10 year ahead horizons. The full year by
+    // year forecast still feeds the Trajectory over time charts unchanged.
+    if(state.showPred){
+      const f = fc[a.id];
+      if(f){
+        const idxs = QUAD_PRED_HORIZONS
+          .map(hz=>hz-1)
+          .filter(ix=>ix >= 0 && ix < f.pred.x.length);
+        const fpx = idxs.map(ix=>f.pred.x[ix]);
+        const fpy = idxs.map(ix=>f.pred.y[ix]);
+        const last = h.x.length - 1;
+        const px = [h.x[last]].concat(fpx);
+        const py = [h.y[last]].concat(fpy);
+        traces.push({
+          type:"scatter", mode:"lines", x:px, y:py, showlegend:false,
+          line:{color:color, width:1.5, dash:"dot"}, hoverinfo:"skip"
+        });
+        const fcd = idxs.map(ix=>{
+          const hz = ix + 1;
+          return ["+"+hz+" year"+(hz===1?"":"s"),
+                  fmtFull(f.pred.streams[ix]), fmtFull(f.pred.placements[ix])];
+        });
+        traces.push({
+          type:"scatter", mode:"markers", name:a.name+" forecast", showlegend:false,
+          x:fpx, y:fpy, customdata:fcd,
+          marker:{color:color, size:8, symbol:"circle-open", line:{width:1.6}},
+          hovertemplate:"<b>"+a.name+" forecast</b><br>%{customdata[0]}"+QUAD_HOVER
+        });
+      }
+    }
+  });
+
+  // Cross hair at the origin, since every year is centered on its median.
+  const guide = {color:"#8fa0c4", width:1.2, dash:"dash"};
+  const shapes = [
+    {type:"line", x0:0, x1:0, y0:-1.08, y1:1.08, line:guide},
+    {type:"line", x0:-1.08, x1:1.08, y0:0, y1:0, line:guide}
+  ];
+
+  const anns = [
+    ["Low reach, low streams", -1.03, -1.03, "left", "bottom"],
+    ["Low reach, high streams", -1.03, 1.03, "left", "top"],
+    ["High reach, low streams", 1.03, -1.03, "right", "bottom"],
+    ["High reach, high streams", 1.03, 1.03, "right", "top"],
+  ].map(([t,x,y,xa,ya])=>({x:x, y:y, text:t, showarrow:false,
+    font:{size:11, color:"#8595b0"}, xanchor:xa, yanchor:ya}));
+
+  // Fixed layout: reserve a constant right margin for the legend and turn off
+  // margin autoexpand, so the square plane never moves when overlays toggle.
+  const layout = {
+    paper_bgcolor:"#171e2e", plot_bgcolor:"#171e2e",
+    font:{color:"#e7ecf5", size:12},
+    margin:{l:56, r:150, t:16, b:44, autoexpand:false},
+    xaxis:{title:"Total placements per year (reach), below to above median",
+      range:[-1.12,1.12], showticklabels:false, zeroline:false,
+      gridcolor:"#232d44", constrain:"domain"},
+    yaxis:{title:"Total streams per year, below to above median",
+      range:[-1.12,1.12], showticklabels:false, zeroline:false,
+      gridcolor:"#232d44", scaleanchor:"x", scaleratio:1, constrain:"domain"},
+    legend:{x:1.02, xanchor:"left", y:1, yanchor:"top", font:{size:11}},
+    hovermode:"closest", shapes:shapes, annotations:anns
+  };
+  Plotly.react("chart", traces, layout, {responsive:true, displayModeBar:true, displaylogo:false});
+}
+
+function show(id, on){ document.getElementById(id).style.display = on ? "" : "none"; }
+
+function updateTabUI(){
+  const t = state.tab;
+  const isTraj = (t === "trajectory" || t === "career");
+  show("group-quadopts", t === "quadrant");
+  show("group-metric", isTraj);
+  show("group-overlays", isTraj);
+  show("group-artists", t === "quadrant" || isTraj);
+  show("chart-wrap", t !== "rankings");
+  show("yearly-wrap", isTraj);
+  show("rankings-wrap", t === "rankings");
+  document.getElementById("tab-caption").textContent = TAB_CAPTIONS[t] || "";
+}
+
+function render(){
+  syncCheckboxes();
+  updateTabUI();
+  if(state.tab === "quadrant") renderQuadrant();
+  else if(state.tab === "trajectory"){ state.axis = "date"; renderTrajectory(); renderYearly(); }
+  else if(state.tab === "career"){ state.axis = "career_month"; renderTrajectory(); renderYearly(); }
+  // rankings tab is static HTML, nothing to render
+}
+
+// Debut calendar year, for aligning yearly points on years since debut.
+function debutYear(a){ return parseInt(a.debut.slice(0,4), 10); }
+
+// One yearly time series chart: observed solid, recursive forecast dashed, with
+// hover showing the raw total (and its unit for placements) and the normalized
+// value on the development plane.
+function renderYearlyChart(divId, field, normField, axisTitle, unit, byCareer){
+  const traces = [];
+  const selected = DATA.artists.filter(a=>state.selected.has(a.id))
+    .sort((a,b)=>a.metrics.rank-b.metrics.rank);
+  selected.forEach(a=>{
+    const f = (DATA.forecast.artists || {})[a.id];
+    if(!f) return;
+    const color = colorById[a.id];
+    const base = byCareer ? debutYear(a) : 0;
+    const ox = f.obs.years.map(y=>byCareer ? (y-base) : y);
+    const unitStr = unit ? (" "+unit) : "";
+    const ocd = f.obs.years.map((y,i)=>[y, f.obs[normField][i]]);
+    traces.push({
+      type:"scatter", mode:"lines+markers", name:a.name,
+      x:ox, y:f.obs[field], customdata:ocd,
+      line:{color:color, width:2}, marker:{color:color, size:7, line:{color:"#0f1420", width:1}},
+      hovertemplate:"<b>"+a.name+"</b><br>"+(byCareer?"career year %{x}":"%{x}")+
+        "<br>%{y:,.0f}"+unitStr+"<br>normalized %{customdata[1]:.2f} (year %{customdata[0]})<extra></extra>"
+    });
+    // Dashed forecast continuation from the last observed year.
+    const fx = [ox[ox.length-1]].concat(f.pred.years.map(y=>byCareer ? (y-base) : y));
+    const fy = [f.obs[field][f.obs[field].length-1]].concat(f.pred[field]);
+    const fcd = [[f.obs.years[f.obs.years.length-1], f.obs[normField][f.obs[normField].length-1]]]
+      .concat(f.pred.years.map((y,i)=>[y, f.pred[normField][i]]));
+    traces.push({
+      type:"scatter", mode:"lines+markers", name:a.name+" forecast", showlegend:false,
+      x:fx, y:fy, customdata:fcd,
+      line:{color:color, width:1.8, dash:"dot"},
+      marker:{color:color, size:6, symbol:"circle-open", line:{width:1.4}},
+      hovertemplate:"<b>"+a.name+" forecast</b><br>"+(byCareer?"career year %{x}":"%{x}")+
+        "<br>%{y:,.0f}"+unitStr+"<br>normalized %{customdata[1]:.2f} (year %{customdata[0]})<extra></extra>"
+    });
+  });
+  const layout = {
+    paper_bgcolor:"#171e2e", plot_bgcolor:"#171e2e",
+    font:{color:"#e7ecf5", size:12},
+    margin:{l:64, r:20, t:28, b:44},
+    title:{text:axisTitle, font:{size:13}, x:0, xanchor:"left"},
+    xaxis:{title: byCareer ? "Years since debut" : "Calendar year",
+      gridcolor:"#2b3752", zeroline:false, dtick:1},
+    yaxis:{title:axisTitle, gridcolor:"#2b3752", zeroline:false},
+    legend:{orientation:"h", y:-0.2, font:{size:11}},
+    hovermode:"closest"
+  };
+  Plotly.react(divId, traces, layout, {responsive:true, displayModeBar:false, displaylogo:false});
+}
+
+function renderYearly(){
+  const byCareer = (state.tab === "career");
+  document.getElementById("yearly-note").textContent = byCareer
+    ? "Total streams and placement adds per year, aligned on years since debut. Solid is observed, dotted is the recursive forecast. Hover shows the raw total with its unit and the normalized value on the development plane."
+    : "Total streams and placement adds per year on calendar years. Solid is observed, dotted is the recursive forecast. Hover shows the raw total with its unit and the normalized value on the development plane.";
+  renderYearlyChart("chart-streams-yearly", "streams", "y",
+    "Total streams per year", "", byCareer);
+  renderYearlyChart("chart-plac-yearly", "placements", "x",
+    "Total placement adds per year", PLAC_UNIT, byCareer);
+}
+
+function buildShortlist(){
+  const el = document.getElementById("shortlist");
+  el.innerHTML = "";
+  DATA.rankings.shortlist.forEach(item=>{
+    const c = document.createElement("div");
+    c.className = "card";
+    c.innerHTML =
+      '<h3><span class="swatch" style="background:'+(colorById[item.artist_id]||"#888")+'"></span>'+
+        '#'+item.rank+' '+item.name+'</h3>'+
+      '<div class="sub">'+item.genre+' · '+item.home_region+' · '+item.archetype.replace(/_/g," ")+'</div>'+
+      '<div class="score">'+item.investment_score.toFixed(1)+'</div>'+
+      '<div class="kv"><span>Momentum / week</span><span>'+(item.momentum_weekly*100).toFixed(1)+'%</span></div>'+
+      '<div class="kv"><span>Weekly streams</span><span>'+fmt(item.current_streams)+'</span></div>'+
+      '<div class="kv"><span>Followers</span><span>'+fmt(item.current_followers)+'</span></div>'+
+      '<div class="rationale">'+item.rationale+'</div>';
+    el.appendChild(c);
+  });
+}
+
+function buildBoard(){
+  const el = document.getElementById("full-board");
+  let html = '<table style="width:100%; border-collapse:collapse; font-size:13px;">'+
+    '<thead><tr style="text-align:left; color:var(--muted); border-bottom:1px solid var(--line);">'+
+    '<th style="padding:6px 8px;">Rank</th><th>Artist</th><th>Genre</th>'+
+    '<th style="text-align:right;">Score</th><th style="text-align:right;">Momentum/wk</th>'+
+    '<th style="text-align:right;">Weekly streams</th></tr></thead><tbody>';
+  DATA.rankings.full_board.forEach(item=>{
+    html += '<tr style="border-bottom:1px solid #212b42;">'+
+      '<td style="padding:6px 8px;">'+item.rank+'</td>'+
+      '<td><span class="swatch" style="display:inline-block; background:'+(colorById[item.artist_id]||"#888")+'; margin-right:6px;"></span>'+item.name+'</td>'+
+      '<td>'+item.genre+'</td>'+
+      '<td style="text-align:right;">'+item.investment_score.toFixed(1)+'</td>'+
+      '<td style="text-align:right;">'+(item.momentum_weekly*100).toFixed(1)+'%</td>'+
+      '<td style="text-align:right;">'+fmt(item.current_streams)+'</td></tr>';
+  });
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+function wireControls(){
+  document.querySelectorAll("#metric-seg button").forEach(b=>{
+    b.addEventListener("click", ()=>{
+      document.querySelectorAll("#metric-seg button").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active"); state.metric = b.dataset.metric; render();
+    });
+  });
+  document.getElementById("toggle-history").addEventListener("change", e=>{ state.showHistory=e.target.checked; render(); });
+  document.getElementById("toggle-predictions").addEventListener("change", e=>{ state.showPred=e.target.checked; render(); });
+  document.getElementById("toggle-releases").addEventListener("change", e=>{ state.releases=e.target.checked; render(); });
+  document.getElementById("toggle-projection").addEventListener("change", e=>{ state.projection=e.target.checked; render(); });
+  document.getElementById("toggle-log").addEventListener("change", e=>{ state.log=e.target.checked; render(); });
+  document.getElementById("btn-top3").addEventListener("click", ()=>{
+    state.selected = new Set(DATA.artists.slice().sort((a,b)=>a.metrics.rank-b.metrics.rank).slice(0,3).map(a=>a.id));
+    render();
+  });
+  document.getElementById("btn-all").addEventListener("click", ()=>{
+    state.selected = new Set(DATA.artists.map(a=>a.id)); render();
+  });
+  document.getElementById("btn-none").addEventListener("click", ()=>{ state.selected = new Set(); render(); });
+}
+
+fetch("data.json")
+  .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+  .then(init)
+  .catch(err=>{
+    document.getElementById("chart").innerHTML =
+      '<div style="padding:24px; color:#ff7b7b;">Could not load data.json. '+
+      'If you opened this file directly, serve the folder over HTTP instead, for example: '+
+      '<code>python -m http.server</code> from the docs directory. ('+err.message+')</div>';
+  });
+</script>
+</body>
+</html>
